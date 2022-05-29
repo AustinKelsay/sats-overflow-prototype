@@ -1,0 +1,21 @@
+{
+  "name": "sats-overflow-prototype",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/AustinKelsay/sats-overflow-prototype.git",
+  "author": "austinkelsay <austinkelsay@yahoo.com>",
+  "license": "MIT",
+  "scripts": {
+    "start": "parcel src/index.html"
+  },
+  "dependencies": {
+    "@radar/lnrpc": "^0.11.1-beta.1",
+    "cors": "^2.8.5",
+    "express": "^4.18.1",
+    "nodemon": "^2.0.16",
+    "parcel": "^2.6.0",
+    "parcel-bundler": "^1.12.5",
+    "react": "^18.1.0",
+    "react-dom": "^18.1.0"
+  }
+}
