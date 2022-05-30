@@ -1,4 +1,3 @@
-
 exports.seed = function(knex: any) {
     // Deletes ALL existing entries
     return knex('questions').del()
