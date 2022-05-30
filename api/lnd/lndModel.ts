@@ -2,15 +2,17 @@ import db from "../../database/db-config"
 import {LndNode} from "./lndRouter"
 
 module.exports = {
-    getAllNodes,
+    getNode,
     addNode,
     updateNode,
     removeNode
 }
 
-function getAllNodes() {
+function getNode(id: number) {
+    console.log(id)
     return db('users')
-        .select("users.pubkey", "users.host", "users.cert", "users.macaroon")
+        .where({ id })
+        .first()
 }
 
 function addNode(id: number, node: LndNode) {

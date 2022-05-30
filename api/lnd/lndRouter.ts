@@ -2,6 +2,7 @@ import { Request, Response } from 'express';
 import nodeManager from './nodeManager';
 const Nodes = require('./lndModel')
 const router = require("express").Router();
+const authenticateSpecificUser = require("../users/middleware/authenticateUserMiddleware")
 
 export interface LndNode {
   host: string;
@@ -10,10 +11,13 @@ export interface LndNode {
   pubkey: string;
 }
 
-router.get('/', (req: Request, res: Response) => {
-  Nodes.getAllNodes()
-  .then((nodes: any) => {
-    res.status(200).json(nodes)
+router.get('/:id', authenticateSpecificUser, (req: Request, res: Response) => {
+  if (!req.params.id) {
+    res.status(400).json({ message: 'Please provide a node id' })
+  }
+  Nodes.getNode(req.params.id)
+  .then((node: any) => {
+    res.status(200).json(node)
   })
   .catch((err: Error) => {
     res.status(500).json(err)
