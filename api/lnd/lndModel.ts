@@ -13,6 +13,7 @@ function getNode(id: number) {
     return db('users')
         .where({ id })
         .first()
+        .select('host', 'cert', 'macaroon', 'pubkey')
 }
 
 function addNode(id: number, node: LndNode) {

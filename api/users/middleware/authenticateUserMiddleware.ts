@@ -7,7 +7,6 @@ module.exports = (req: Request, res: Response, next: any) => {
     const secret = process.env.JWT_SECRET || "Satoshi Nakamoto";
     Users.findById(req.params.id)
     .then((user: any) => {
-      console.log(user)
       const user_id = user.id
       if (token && user_id) {
         jwt.verify(token, secret, (err: Error, decodedToken: any) => {
