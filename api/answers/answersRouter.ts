@@ -2,7 +2,7 @@ const router = require("express").Router();
 import express, {Request, Response} from "express"
 const Answers = require("./answersModel");
 const authenticate = require("../users/middleware/authenticateMiddleware");
-const authenticateSpecificUser = require("../users/middleware/authenticateSpecificUserMiddleware")
+const authenticateSpecificUser = require("../users/middleware/authenticateUserMiddleware")
 
 
 router.get("/", (req: Request, res: Response) => {

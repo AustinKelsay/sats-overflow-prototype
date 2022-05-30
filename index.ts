@@ -1,7 +1,7 @@
-import server from "./api/server"
+import app from "./api/server"
 
 const PORT = process.env.PORT || 3000;
 
-server.listen(PORT, () => {
+app.listen(PORT, () => {
   console.log(`Listening on port ${PORT}...`);
 });

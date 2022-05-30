@@ -1,8 +1,7 @@
 import { Request, Response } from 'express';
 import nodeManager from './nodeManager';
-const Nodes = require('./lightningModel')
+const Nodes = require('./lndModel')
 const router = require("express").Router();
-const {authenticateAdmin} = require("../users/authenticateAdminMiddleware")
 
 export interface LndNode {
   host: string;

@@ -5,8 +5,10 @@ import morgan from 'morgan';
 import helmet from 'helmet';
 import dotenv from 'dotenv';
 
-// const userRouter = require("../users/users-router");
-// const authRouter = require("../auth/auth-router");
+const authRouter = require("./users/authRouter");
+const questionsRouter = require("./questions/questionsRouter");
+const answersRouter = require("./answers/answersRouter");
+const lndRouter = require("./lnd/lndRouter");
 
 dotenv.config()
 
@@ -38,8 +40,11 @@ app.use(helmet());
     };
   };
 
-// server.use("/api/auth", authRouter);
-// server.use("/api/user", userRouter);
+// Routes
+app.use("/api/auth", catchAsyncErrors(authRouter));
+app.use("/api/questions", catchAsyncErrors(questionsRouter));
+app.use("/api/answers", catchAsyncErrors(answersRouter));
+app.use("/api/lnd", catchAsyncErrors(lndRouter));
 
 
 app.get("/", (req: Request, res: Response) => {

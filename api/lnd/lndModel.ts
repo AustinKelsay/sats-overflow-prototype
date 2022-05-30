@@ -1,5 +1,5 @@
 import db from "../../database/db-config"
-import {LndNode} from "./lightningRouter"
+import {LndNode} from "./lndRouter"
 
 module.exports = {
     getAllNodes,

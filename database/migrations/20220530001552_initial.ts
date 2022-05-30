@@ -33,10 +33,6 @@ export async function up(knex: Knex): Promise<void> {
         users
             .string('pubkey')
             .unique()
-
-        users
-            .string('node_alias')
-            .unique()
         
     })
     .createTable('questions', (questions: any) => {
@@ -55,14 +51,6 @@ export async function up(knex: Knex): Promise<void> {
             .string('user')
             .notNullable()
             .references('username')
-            .inTable('users')
-            .onUpdate("CASCADE")
-            .onDelete("CASCADE");
-
-        questions
-            .string('alias')
-            .notNullable()
-            .references('node_alias')
             .inTable('users')
             .onUpdate("CASCADE")
             .onDelete("CASCADE");
@@ -115,14 +103,6 @@ export async function up(knex: Knex): Promise<void> {
             .unsigned()
             .references('id')
             .inTable('questions')
-            .onUpdate("CASCADE")
-            .onDelete("CASCADE");
-
-        answers
-            .string('alias')
-            .notNullable()
-            .references('node_alias')
-            .inTable('users')
             .onUpdate("CASCADE")
             .onDelete("CASCADE");
 

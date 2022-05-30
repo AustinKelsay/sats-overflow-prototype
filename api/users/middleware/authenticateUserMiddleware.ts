@@ -1,14 +1,14 @@
 const jwt = require("jsonwebtoken");
 import express, { Request, Response } from 'express';
-const Principles = require("../../principles/principlesModel");
+const Questions = require("../../questions/questionsModel");
 
 module.exports = (req: Request, res: Response, next: any) => {
     const token = req.headers.authorization;
     const secret = process.env.JWT_SECRET || "Satoshi Nakamoto";
-    Principles.findById(req.params.id)
-    .then((principle: any) => {
-      console.log(principle)
-      const user_id = principle.user_id
+    Questions.findById(req.params.id)
+    .then((question: any) => {
+      console.log(question)
+      const user_id = question.user_id
       if (token && user_id) {
         jwt.verify(token, secret, (err: Error, decodedToken: any) => {
           console.log("token",decodedToken)
