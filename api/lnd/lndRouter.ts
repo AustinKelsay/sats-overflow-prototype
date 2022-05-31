@@ -52,25 +52,25 @@ router.delete("/:id", authenticateSpecificUser, (req: Request, res: Response) =>
 
 // Add a node to user
 router.post("/:id", authenticateSpecificUser, async (req: Request, res: Response) => {
-  if (req.body.host && req.body.cert && req.body.macaroon && req.body.pubkey) {
+  if (req.body.host && req.body.cert && req.body.macaroon) {
     const { pubkey } = await nodeManager.connect(req.body.host, req.body.cert, req.body.macaroon);
-    const newNode = {pubkey: pubkey, host: req.body.host, cert: req.body.cert, macaroon: req.body.macaroon}
-    Nodes.getNode(req.params.id)
-  .then((node: any) => {
-    Nodes.addNode(req.params.id, newNode)
-      .then((nodes: any) => {
-        res.status(200).json(node)
+    if (pubkey) {
+      console.log('pubkey', pubkey)
+      const newNode = {pubkey: pubkey, host: req.body.host, cert: req.body.cert, macaroon: req.body.macaroon}
+      Nodes.addNode(req.params.id, newNode)
+      .then((r: any) => {
+        res.status(200).json(r)
       })
       .catch((err: any) => {
-        res.status(500).json("This user already has a node connected to their profile, please remove the node before adding a new one")
+        res.status(500).json(err)
       })
-  })
-  .catch((err: Error) => {
-    res.status(500).json(err)
-  })
+    }
+    else {
+      res.status(500).json({ message: 'Node could not be added, your host, cert, or macaroon might be invalid.' })
+    }
   }
   else {
-    res.status(500).json("Either host, cert, macaroon, or pubkey is missing")
+    res.status(500).json("Either host, cert, or macaroon is missing")
   }
 })
   
