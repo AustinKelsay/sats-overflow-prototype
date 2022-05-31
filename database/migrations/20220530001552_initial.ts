@@ -15,6 +15,10 @@ export async function up(knex: Knex): Promise<void> {
             .notNullable();
 
         users
+            .timestamp('created_at')
+            .defaultTo(knex.fn.now())
+
+        users
             .boolean("admin")
             .defaultTo(0)
         

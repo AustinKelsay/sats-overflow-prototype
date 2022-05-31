@@ -55,7 +55,6 @@ router.post("/:id", authenticateSpecificUser, async (req: Request, res: Response
   if (req.body.host && req.body.cert && req.body.macaroon) {
     const { pubkey } = await nodeManager.connect(req.body.host, req.body.cert, req.body.macaroon);
     if (pubkey) {
-      console.log('pubkey', pubkey)
       const newNode = {pubkey: pubkey, host: req.body.host, cert: req.body.cert, macaroon: req.body.macaroon}
       Nodes.addNode(req.params.id, newNode)
       .then((r: any) => {

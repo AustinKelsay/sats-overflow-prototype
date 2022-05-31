@@ -9,7 +9,6 @@ module.exports = {
 }
 
 function getNode(id: number) {
-    console.log(id)
     return db('users')
         .where({ id })
         .first()

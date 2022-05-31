@@ -10,7 +10,8 @@ exports.seed = function(knex: any) {
             id: 1, 
             username: 'Alice', 
             password: 
-            bcrypt.hashSync('pass1', 14), 
+            bcrypt.hashSync('pass1', 14),
+            created_at: new Date(),
             admin: 1,
             host: 'test_host_1', 
             cert: '6969696969696969696969696969696969696969696969696969696969696969696969',
@@ -22,6 +23,7 @@ exports.seed = function(knex: any) {
             username: 'Bob', 
             password: 
             bcrypt.hashSync('pass2', 14),
+            created_at: new Date(),
             host: 'test_host_2', 
             cert: '420420420420420420420420420420420420420420420420420420420420420420420420420',
             macaroon: '420420420420420420420420420420420420420420420420420420420420420420420420420',
@@ -32,6 +34,7 @@ exports.seed = function(knex: any) {
             username: 'Austin', 
             password: 
             bcrypt.hashSync('pass3', 14),
+            created_at: new Date(),
             host: 'test_host_3', 
             cert: '999999999999999999999999999999999999999999999999999999999999999999999999999999',
             macaroon: '99999999999999999999999999999999999999999999999999999999999999999999999999',
