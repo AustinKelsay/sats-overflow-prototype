@@ -14,7 +14,7 @@ class NodeManager extends EventEmitter {
 
     try {
       // add the connection to the cache
-      const rpc = await createLnRpc({
+      const rpc = await createLnRpc({ 
         server: host,
         cert: Buffer.from(cert, 'hex').toString('utf-8'), // utf8 encoded certificate
         macaroon, // hex encoded macaroon

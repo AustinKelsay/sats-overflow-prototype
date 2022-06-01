@@ -24,6 +24,7 @@
   },
   "homepage": "https://github.com/AustinKelsay/sats-overflow-prototype#readme",
   "devDependencies": {
+    "@types/uuid": "^8.3.4",
     "cross-env": "^7.0.3",
     "jest": "^28.1.0",
     "nodemon": "^2.0.16",
