@@ -24,6 +24,26 @@ router.get('/:id', authenticateSpecificUser, (req: Request, res: Response) => {
   })
 })
 
+// Get individual node balance
+router.get('/:id/balance', authenticateSpecificUser, (req: Request, res: Response) => {
+  if (!req.params.id) {
+    res.status(400).json({ message: 'Please provide a node id' })
+  }
+  Nodes.getNode(req.params.id)
+  .then((node: any) => {
+    nodeManager.getNodeBalance(node.host, node.cert, node.macaroon)
+    .then((balance: any) => {
+      res.status(200).json(balance)
+    })
+    .catch((err: Error) => {
+      res.status(500).json(err)
+    })
+  })
+  .catch((err: Error) => {
+    res.status(500).json(err)
+  })
+})
+
 // Update a node for a user
 router.put("/:id", authenticateSpecificUser, (req: Request, res: Response) => {
   if (req.body.host && req.body.cert && req.body.macaroon && req.body.pubkey) {

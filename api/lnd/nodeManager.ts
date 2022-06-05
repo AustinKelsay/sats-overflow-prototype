@@ -64,6 +64,16 @@ class NodeManager extends EventEmitter {
       }
     });
   }
+
+  async getNodeBalance(host: string, cert: string, macaroon: string) {
+    const rpc = await createLnRpc({ 
+      server: host,
+      cert: Buffer.from(cert, 'hex').toString('utf-8'), // utf8 encoded certificate
+      macaroon, // hex encoded macaroon
+    })
+    const { balance } = await rpc.channelBalance();
+    return { balance };
+  }
 }
 
 export default new NodeManager();
