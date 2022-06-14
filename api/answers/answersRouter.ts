@@ -5,7 +5,7 @@ const authenticate = require("../users/middleware/authenticateMiddleware");
 const authenticateSpecificUser = require("../users/middleware/authenticateUserMiddleware")
 
 
-router.get("/", (req: Request, res: Response) => {
+router.get("/", (res: Response) => {
     Answers.findAnswers()
       .then((answers: any) => {
         res.status(200).json(answers);
@@ -15,7 +15,7 @@ router.get("/", (req: Request, res: Response) => {
       });
 });
 
-router.get("/:id", authenticate, (req: Request, res: Response) => {
+router.get("/:id", (req: Request, res: Response) => {
   Answers.findById(req.params.id)
     .then((answers: any) => {
       res.status(200).json(answers);
